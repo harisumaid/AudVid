@@ -18,6 +18,7 @@
         android:text="play"
         android:textSize="30sp"
         app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/volbar" />
 
@@ -25,7 +26,7 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="68dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="80dp"
         android:layout_marginRight="8dp"
@@ -37,20 +38,16 @@
         app:layout_constraintBottom_toTopOf="@+id/scrubber"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button"
-        app:layout_constraintTop_toBottomOf="@+id/volbar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/volbar" />
 
     <SeekBar
         android:id="@+id/volbar"
         android:layout_width="match_parent"
         android:layout_height="33dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <SeekBar
         android:id="@+id/scrubber"
@@ -93,35 +90,34 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <android.support.v7.widget.GridLayout
-        android:layout_width="368dp"
-        android:layout_height="284dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/scrubber"
-        app:layout_constraintStart_toStartOf="@+id/scrubber"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/scrubber">
 
         <Button
             android:id="@+id/magentariddim"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="play"
             android:text="Magenta&#10;Riddim"
             app:layout_column="0"
             app:layout_columnWeight="1"
             app:layout_row="0"
-            android:onClick="play"
             app:layout_rowWeight="1" />
 
 
         <Button
-            android:onClick="play"
             android:id="@+id/pal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="play"
             android:text="Pal"
             app:layout_column="1"
             app:layout_columnWeight="1"
@@ -130,10 +126,10 @@
 
 
         <Button
-            android:onClick="play"
             android:id="@+id/paniyonsa"
             android:layout_width="118dp"
             android:layout_height="wrap_content"
+            android:onClick="play"
             android:text="Paniyon&#10; Sa"
             app:layout_column="0"
             app:layout_columnWeight="1"
@@ -142,10 +138,10 @@
 
 
         <Button
-            android:onClick="play"
             android:id="@+id/halloffame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="play"
             android:text="Hall Of Fame"
             app:layout_column="1"
             app:layout_columnWeight="1"
@@ -154,10 +150,10 @@
 
 
         <Button
-            android:onClick="play"
             android:id="@+id/whateverittakes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="play"
             android:text="Whatever&#10; It Takes"
             app:layout_column="0"
             app:layout_columnWeight="1"

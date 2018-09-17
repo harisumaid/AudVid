@@ -1,9 +1,12 @@
 package com.firstone.audvid;
 
+import android.content.Intent;
 import android.media.AudioManager;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -15,141 +18,41 @@ import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
-    MediaPlayer mplayer;
-    Boolean isplaying=false;
+
+    ImageView ta, tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activtiy_main);
-    }
-  public void audio(final View view)
-    {
 
-        final TextView curdur;
-        final TextView findur;
-        final AudioManager audioManager;
-        final SeekBar scrubber = (SeekBar) findViewById(R.id.scrubber);
-        scrubber.setMax(mplayer.getDuration());
-        
+        ta = (ImageView) findViewById(R.id.imageView);
+        tv = (ImageView) findViewById(R.id.imageView2);
 
-
-
-        curdur = (TextView) findViewById(R.id.curdur);
-        findur = (TextView) findViewById(R.id.findur);
-        findur.setText(Integer.toString(mplayer.getDuration()));
-        audioManager = (AudioManager)getSystemService(AUDIO_SERVICE);
-        int MaxVol =audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-        int CurVol =audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-
-        SeekBar volbar = (SeekBar) findViewById(R.id.volbar);
-        volbar.setMax(MaxVol);
-        volbar.setProgress(CurVol);
-
-        volbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
-            }
+        ta.setOnClickListener(new View.OnClickListener() {
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
+            public void onClick(View v) {
+                    audio();
             }
         });
 
-        new Timer().scheduleAtFixedRate(new TimerTask() {
+        tv.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                scrubber.setProgress(mplayer.getCurrentPosition());
-            }
-        },0,50);
-
-        scrubber.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    curdur.setText(Integer.toString(scrubber.getProgress()));
-                if(fromUser==true)
-                {
-                    mplayer.seekTo(progress);
-                }
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                    audp(view);
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                aud(view);
+            public void onClick(View v) {
+                video();
             }
         });
     }
 
-    public void aud(View view)
+    public void video()
     {
-        mplayer.start();
+        Intent intent  = new Intent(this, VideoActivity.class);
+        startActivity(intent);
     }
-
-    public void audp(View view) {
-        mplayer.pause();
-
-    }
-
-    public void vid(View view)
+    public void audio()
     {
-        setContentView(R.layout.activity_video);
-
-        VideoView videoView = (VideoView) findViewById(R.id.videoView);
-
-
-        videoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.demovideo);
-
-        MediaController mediaController = new MediaController(this);
-        mediaController.setAnchorView(videoView);
-        videoView.setMediaController(mediaController);
-
-
-        videoView.start();
+        Intent intent = new Intent(this , AudioActivity.class);
+        startActivity(intent);
     }
-    @Override
-    public void onBackPressed(){
-        super.onBackPressed();
-    }
-
-    public void play(View view)
-    {
-        if(isplaying == true)
-            mplayer.stop();
-
-        isplaying=true;
-        int id = view.getId();
-        String songId = "";
-        songId = getResources().getResourceEntryName(id);
-
-       int id1 = getResources().getIdentifier(songId,"raw" ,"com.firstone.audvid");
-
-        mplayer = MediaPlayer.create(this,id1);
-        mplayer.start();
-        audio(view);
-
-    }
-    public void auds(View view)
-    {
-        setContentView(R.layout.activity_audio);
-    }
-    public void home(View view)
-    {
-        setContentView(R.layout.activtiy_main);
-        mplayer.stop();
-        isplaying=false;
-    }
-
-
 }
